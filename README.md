@@ -19,5 +19,5 @@ git remote add template "https://github.com/jmpa-oss/repo-template.git"
 
 Then, to update thereafter, run:
 ```bash
-./bin/update.sh
+./bin/update-template.sh
 ```

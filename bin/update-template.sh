@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# setup / update a repository built from this template.
+# updates a child repository built from this base template.
 
 # funcs
 die() { echo "$1" >&2; exit "${2:-1}"; }
