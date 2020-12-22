@@ -1,3 +1,5 @@
+[![lint](https://github.com/jmpa-oss/repo-template/workflows/lint/badge.svg)](https://github.com/jmpa-oss/repo-template/actions?query=workflow%3Alint)
+
 # repo-template
 
 ```diff
