@@ -26,15 +26,16 @@ docker run --rm \
 @
 find . -name '*Dockerfile*' -type f -exec bash -c "$cmd" \;
 
-# lint bash
+echo "##[group]Linting bash"
 read -d '' -r cmd <<@
-echo "~~~ :bash: linting {}"
+echo "linting {}"
 docker run --rm \
   -w /app \
   -v "$PWD:/app" \
   koalaman/shellcheck {}
 @
 find . -name '*.sh' -exec bash -c "$cmd" \;
+echo "##[endgroup]"
 
 # lint go
 # TODO
