@@ -15,7 +15,7 @@ For a new repository, you must first run:
 git remote add template "https://github.com/jmpa-oss/repo-template.git"
 ```
 
-then, to update thereafter, run:
+Then, to update thereafter, run:
 ```bash
 ./bin/update.sh
 ```
