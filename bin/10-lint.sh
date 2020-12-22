@@ -31,7 +31,7 @@ echo "##[endgroup]"
 # lint bash
 echo "##[group]Linting bash"
 read -d '' -r cmd <<@
-echo ""~~~ linting {}"
+echo "~~~ linting {}"
 docker run --rm \
   -w /app \
   -v "$PWD:/app" \
