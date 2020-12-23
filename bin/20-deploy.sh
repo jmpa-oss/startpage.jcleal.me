@@ -68,6 +68,7 @@ name="$(basename "$PWD")" \
 stack="$name-$template"
 [[ $template == "template" ]] \
   && { stack="$name"; }
+stack="${stack/\./_}"
 
 # deploy stack
 echo "##[group]Deploying $stack"
