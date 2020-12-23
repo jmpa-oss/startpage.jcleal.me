@@ -18,5 +18,28 @@ fi
 aws sts get-caller-identity &>/dev/null \
   || die "unable to connect to AWS; are you authed?"
 
+<<<<<<< HEAD
 # sync to s3
 # TODO
+=======
+# check path
+path="./src"
+[[ -d "$path" ]] \
+  || die "missing $path"
+
+# get stack name
+stack="$(basename "$PWD")" \
+  || die "failed to get repository name"
+stack="${stack/\./-}"
+
+# get bucket
+bucket=$(aws cloudformation describe-stacks --stack-name "$stack" \
+    --query 'Stacks[].Outputs[?OutputKey==`Bucket`].OutputValue' --output text) \
+    || die "failed to get bucket name for $stack"
+
+# sync to s3
+echo "##[group]Syncing to s3"
+aws s3 sync "$path" "s3://$bucket" \
+    || die "failed to sync $path to $bucket"
+echo "##[endgroup]"
+>>>>>>> template/master
