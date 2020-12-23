@@ -144,7 +144,7 @@ Resources:
     Properties:
       HostedZoneId: !Ref HostedZoneId
       RecordSets:
-        - Name: !Ref Domain
+        - Name: !Ref Startpage
           Type: A
           AliasTarget:
             HostedZoneId: Z2FDTNDATAQYW2 # https://docs.aws.amazon.com/general/latest/gr/s3.html#s3_website_region_endpoints
