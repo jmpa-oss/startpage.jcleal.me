@@ -19,34 +19,31 @@ if [[ ${#missing[@]} -ne 0 ]]; then
 fi
 
 # lint dockerfiles
-echo "##[group]Linting dockerfiles"
 read -d '' -r cmd << @
-echo "~~~ :docker: linting {}"
+echo "##[group]Linting {}"
 docker run --rm \
   hadolint/hadolint < {}
+echo "##[endgroup]"
 @
 find . -name '*Dockerfile*' -type f -exec bash -c "$cmd" \;
-echo "##[endgroup]"
 
 # lint bash
-echo "##[group]Linting bash"
 read -d '' -r cmd <<@
-echo "~~~ linting {}"
+echo "##[group]Linting {}"
 docker run --rm \
   -w /app \
   -v "$PWD:/app" \
   koalaman/shellcheck {}
+echo "##[endgroup]"
 @
 find . -name '*.sh' -exec bash -c "$cmd" \;
-echo "##[endgroup]"
 
 # lint cf?
 if [[ -d ./cf ]]; then
-  echo "##[group]Linting cloudformation"
   read -d '' -r cmd <<@
-echo "~~~ :aws: :cloudformation: linting {}"
+echo "##[group]Linting {}"
 aws cloudformation validate-template --template-body "file://{}"
+echo "##[endgroup]"
 @
   find ./cf -name '*.yml' -type f -exec bash -c "$cmd" \;
-  echo "##[endgroup]"
 fi

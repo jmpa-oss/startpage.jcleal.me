@@ -77,9 +77,10 @@ aws cloudformation deploy \
   --no-fail-on-empty-changeset \
   --capabilities CAPABILITY_IAM \
   --parameter-overrides \
+    "Repository=$name" \
     "HostedZoneId=$hostedZoneId" \
     "AcmCertificateArn=$cert" \
     "Domain=$domain" \
-  --tags repo=$name \
+  --tags "repository=$name" \
   || die "failed to deploy cf $stack"
 echo "##[endgroup]"
