@@ -66,10 +66,12 @@ cert=$(<<<"$certs" jq -r --arg domain "$domain" \
 name="$(basename "$PWD")" \
   || die "failed to get repository name"
 stack="$name-$template"
+[[ $template == "template" ]] \
+  && { stack="$name"; }
 
 # deploy stack
 echo "##[group]Deploying $stack"
-echo aws cloudformation deploy \
+aws cloudformation deploy \
   --template-file "$path" \
   --stack-name "$stack" \
   --no-fail-on-empty-changeset \
