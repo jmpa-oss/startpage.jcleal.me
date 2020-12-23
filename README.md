@@ -1,9 +1,9 @@
-[![lint](https://github.com/jmpa-oss/repo-template/workflows/lint/badge.svg)](https://github.com/jmpa-oss/repo-template/actions?query=workflow%3Alint)
+[![lint](https://github.com/jmpa-oss/website-template/workflows/lint/badge.svg)](https://github.com/jmpa-oss/website-template/actions?query=workflow%3Alint)
 
-# repo-template
+# website-template
 
 ```diff
-+ A template used as a base for other repositories in this org.
++ A base template used to create child website repositories.
 ```
 
 ## create
@@ -14,7 +14,7 @@ To learn about creating a repository template in GitHub, see [this doc](https://
 
 For a new repository, you must first run:
 ```bash
-git remote add template "https://github.com/jmpa-oss/repo-template.git"
+git remote add template "https://github.com/jmpa-oss/website-template.git"
 ```
 
 Then, to update thereafter, run:
