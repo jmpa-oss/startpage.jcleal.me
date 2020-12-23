@@ -18,10 +18,6 @@ fi
 aws sts get-caller-identity &>/dev/null \
   || die "unable to connect to AWS; are you authed?"
 
-<<<<<<< HEAD
-# sync to s3
-# TODO
-=======
 # check path
 path="./src"
 [[ -d "$path" ]] \
@@ -42,4 +38,3 @@ echo "##[group]Syncing to s3"
 aws s3 sync "$path" "s3://$bucket" \
     || die "failed to sync $path to $bucket"
 echo "##[endgroup]"
->>>>>>> template/master

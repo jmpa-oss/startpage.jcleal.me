@@ -1,12 +1,12 @@
-name: lint
+name: cicd
 on:
   push:
     branches:
       - master
 
 jobs:
-  lint:
-    name: Lint everything!
+  cicd:
+    name: Deploy + release startpage.jcleal.me website
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
@@ -21,3 +21,9 @@ jobs:
 
       - name: Lint
         run: ./bin/10-lint.sh
+
+      - name: Deploy
+        run: ./bin/20-deploy.sh cf/template.yml
+
+      - name: Sync to S3
+        run: ./bin/30-sync.sh
