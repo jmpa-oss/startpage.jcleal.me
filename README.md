@@ -15,6 +15,10 @@ To learn about creating a repository template in GitHub, see [this doc](https://
 For a new repository, you must first run:
 ```bash
 git remote add template "https://github.com/jmpa-oss/website-template.git"
+git fetch template
+git merge template/master
+
+# see ./bin/update-template.sh for a working example.
 ```
 
 Then, to update thereafter, run:
