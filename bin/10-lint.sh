@@ -9,7 +9,7 @@ die() { echo "$1" >&2; exit "${2:-1}"; }
   && die "must be run from repository root directory"
 
 # check deps
-deps=(docker)
+deps=(docker aws)
 for dep in "${deps[@]}"; do
   hash "$dep" 2>/dev/null || missing+=("$dep")
 done
@@ -50,9 +50,3 @@ aws cloudformation validate-template --template-body "file://{}"
   find ./cf -name '*.yml' -type f -exec bash -c "$cmd" \;
   echo "##[endgroup]"
 fi
-
-# lint sam templates
-# TODO
-
-# lint go
-# TODO
