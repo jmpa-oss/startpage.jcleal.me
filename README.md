@@ -1,4 +1,4 @@
-[![cicd](https://github.com/jmpa-oss/website-template/workflows/cicd/badge.svg)](https://github.com/jmpa-oss/website-template/actions?query=workflow%3Acicd)
+[![cicd](https://github.com/jmpa-oss/website-template/workflows/cicd/badge.svg)](https://github.com/jmpa-oss/website-template/actions?query=workflow%3A%22Run+CI%2FCD%22)
 
 # website-template
 
