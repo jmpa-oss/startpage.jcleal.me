@@ -1,4 +1,4 @@
-name: Update repository with changes from template
+name: update
 on:
   repository_dispatch:
     types: [update]

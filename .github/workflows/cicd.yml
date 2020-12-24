@@ -1,4 +1,4 @@
-name: Run CI/CD
+name: cicd
 on:
   push:
     branches:
@@ -23,4 +23,4 @@ jobs:
         run: ./bin/10-lint.sh
 
       - name: Trigger update for repositories using this template
-        run: ./update-templates.sh
+        run: ./bin/update-templates.sh
