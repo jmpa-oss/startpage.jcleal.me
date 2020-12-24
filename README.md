@@ -1,4 +1,4 @@
-[![lint](https://github.com/jmpa-oss/website-template/workflows/lint/badge.svg)](https://github.com/jmpa-oss/website-template/actions?query=workflow%3Alint)
+[![cicd](https://github.com/jmpa-oss/website-template/workflows/cicd/badge.svg)](https://github.com/jmpa-oss/website-template/actions?query=workflow%3Acicd)
 
 # website-template
 
@@ -24,4 +24,11 @@ git merge template/master
 Then, to update thereafter, run:
 ```bash
 ./bin/update-template.sh
+```
+
+## deploy?
+
+Using a terminal, run:
+```bash
+./bin/20-deploy.sh <path-to-template|template-name>
 ```

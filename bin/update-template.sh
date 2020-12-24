@@ -28,5 +28,6 @@ files=($(git diff --name-only "$branch" "$remotebranch")) \
   die "no files found to update for $remotebranch, skipping merge to $branch" 0
 
 # merge changes
-git merge "$remotebranch" -m "update $branch with latest changes from $remotebranch" \
+git merge "$remotebranch" --allow-unrelated-histories \
+  -m "update $branch with latest changes from $remotebranch" \
   || die "failed to merge $remotebranch changes to $branch"

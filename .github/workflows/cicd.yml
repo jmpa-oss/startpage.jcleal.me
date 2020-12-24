@@ -1,12 +1,12 @@
-name: lint
+name: Run CI/CD
 on:
   push:
     branches:
       - master
 
 jobs:
-  lint:
-    name: Lint everything!
+  cicd:
+    name: Run CI/CD
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
@@ -21,3 +21,6 @@ jobs:
 
       - name: Lint
         run: ./bin/10-lint.sh
+
+      - name: Trigger update for repositories using this template
+        run: ./update-templates.sh
