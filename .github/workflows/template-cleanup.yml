@@ -1,7 +1,7 @@
 # This workflow is triggered automatically when a new repository has been created using this template.
 # based by https://github.com/JetBrains/intellij-platform-plugin-template/blob/main/.github/workflows/template-cleanup.yml
 
-name: Template Cleanup
+name: template-cleanup
 on:
   push:
     branches:
