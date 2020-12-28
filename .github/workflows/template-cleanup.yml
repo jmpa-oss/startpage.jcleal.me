@@ -19,30 +19,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Configure AWS
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET }}
+          aws-region: ap-southeast-2
+
       - name: Cleanup
-        run: |
-
-          # retrieve variables
-          name="${GITHUB_REPOSITORY##*/}"
-          safeName=$(<<< "$name" sed 's/[^a-zA-Z0-9]//g' | tr '[:upper:]' '[:lower:]')
-
-          # see if this works.
-          # TODO update this
-          curl -s "https://api.github.com/repos/jmpa-oss/$safeName" \
-            -H "Accept: application/vnd.github.v3+json" \
-            -H "Authorization: bearer $GITHUB_TOKEN"
-
-          # update README.md
-          data="$(cat .github/workflows/template-cleanup/README.md)"
-          data="${data//%WEBSITE%/$name}"       # replace repository name.
-          data="${data//%DESCRIPTION%/$desc}"   # update repository description.
-          $data > ./README.md                   # overwrite existing README.md
-
-          # remove template-specific files.
-          rm -rf \
-            ./github/workflows/template-cleanup.yml \
-            ./github/template-cleanup \
-            ./update-templates.sh
+        run: ./bin/template-cleanup.sh
 
       - name: Commit
         run: |
