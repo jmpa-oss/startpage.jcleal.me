@@ -19,7 +19,6 @@ if [[ ${#missing[@]} -ne 0 ]]; then
 fi
 
 # retrieve variables
-GITHUB_REPOSITORY="jmpa-oss/jcleal.me"
 name="${GITHUB_REPOSITORY##*/}"
 name="${name^^}" # uppercase
 name="${name,,}" # lowercase
