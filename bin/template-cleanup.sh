@@ -9,7 +9,7 @@ die() { echo "$1" >&2; exit "${2:-1}"; }
   && die "must be run from repository root directory"
 
 # check deps
-deps=(aws)
+deps=(aws curl)
 for dep in "${deps[@]}"; do
   hash "$dep" 2>/dev/null || missing+=("$dep")
 done
@@ -23,7 +23,6 @@ GITHUB_REPOSITORY="jmpa-oss/jcleal.me"
 name="${GITHUB_REPOSITORY##*/}"
 name="${name^^}" # uppercase
 name="${name,,}" # lowercase
-# safeName=$(<<< "$name" sed 's/[^a-zA-Z0-9]//g' | tr '[:upper:]' '[:lower:]')
 
 # retrieve GitHub token
 token=$(aws ssm get-parameter --name "/tokens/github" \
@@ -38,14 +37,20 @@ resp=$(curl -s "https://api.github.com/repos/jmpa-oss/$name" \
 desc=$(<<< "$resp" jq -r '.description') \
   || die "failed to parse $name repository info"
 
-# update README.md
-data="$(cat .github/workflows/template-cleanup/README.md)"
+# update template README.md
+data="$(cat .github/workflows/template-cleanup/README.md)" \
+  || die "failed to read template README.md"
 data="${data//%WEBSITE%/$name}"       # replace repository name.
 data="${data//%DESCRIPTION%/$desc}"   # update repository description.
-$data > ./README.md                   # overwrite existing README.md
+
+# overwrite README.md
+echo "$data" > ./README.md \
+  || die "failed to update README.md"
 
 # remove template-specific files.
 rm -rf \
-./github/workflows/template-cleanup.yml \
-./github/template-cleanup \
-./update-templates.sh
+  ./github/workflows/template-cleanup.yml \
+  ./github/template-cleanup \
+  ./bin/template-cleanup.sh \
+  ./bin/update-templates.sh \
+  || die "failed to remove template-specific files"
