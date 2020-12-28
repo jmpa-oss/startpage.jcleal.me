@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-# updates child repositories using this template,
-# using a repository_dispatch event.
+# updates child repositories using this template, using a repository_dispatch event.
 
 # funcs
 die() { echo "$1" >&2; exit "${2:-1}"; }

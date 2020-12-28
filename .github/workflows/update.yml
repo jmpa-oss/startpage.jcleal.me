@@ -10,15 +10,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - name: Update repository?
-        run: |
-          # configure user
-          git config user.name 'GitHub Actions'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          
-          # any files changed?
-          ./bin/update-template.sh
-        
-          # push changes
-          git push origin HEAD:master
+        run: ./bin/update-repository.sh
