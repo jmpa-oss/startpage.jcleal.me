@@ -1,0 +1,50 @@
+# This workflow is triggered automatically when a new repository has been created using this template.
+# based by https://github.com/JetBrains/intellij-platform-plugin-template/blob/main/.github/workflows/template-cleanup.yml
+
+name: Template Cleanup
+on:
+  push:
+    branches:
+      - master
+      - main
+
+jobs:
+
+  template-cleanup:
+    name: Template Cleanup
+    runs-on: ubuntu-20.04
+    if: github.event.repository.name != 'website-template'
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Cleanup
+        run: |
+
+          # retrieve variables
+          name="${GITHUB_REPOSITORY##*/}"
+          safeName=$(<<< "$name" sed 's/[^a-zA-Z0-9]//g' | tr '[:upper:]' '[:lower:]')
+
+          # see if this works.
+          # TODO update this
+          curl -s "https://api.github.com/repos/jmpa-oss/$safeName" \
+            -H "Accept: application/vnd.github.v3+json" \
+            -H "Authorization: bearer $GITHUB_TOKEN"
+
+          # update README.md
+          data="$(cat .github/workflows/template-cleanup/README.md)"
+          data="${data//%WEBSITE%/$name}"       # replace repository name.
+          data="${data//%DESCRIPTION%/$desc}"   # update repository description.
+          $data > ./README.md                   # overwrite existing README.md
+
+          # remove template-specific files.
+          rm -rf \
+            ./github/workflows/template-cleanup.yml \
+            ./github/template-cleanup \
+            ./update-templates.sh
+
+      - name: Commit
+        run: |
+          git config user.name 'GitHub Actions'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
