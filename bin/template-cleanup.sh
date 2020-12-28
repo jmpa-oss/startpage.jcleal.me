@@ -48,8 +48,8 @@ echo "$data" > ./README.md \
 
 # remove template-specific files.
 rm -rf \
-  ./github/workflows/template-cleanup.yml \
-  ./github/template-cleanup \
+  .github/workflows/template-cleanup.yml \
+  .github/workflows/template-cleanup/ \
   ./bin/template-cleanup.sh \
   ./bin/update-templates.sh \
   || die "failed to remove template-specific files"
