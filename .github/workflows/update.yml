@@ -27,9 +27,9 @@ jobs:
           # push changes
           git push
 
-        - name: Notify Slack
-          if: always()
-          uses: jcleal/job-to-slack@v0.0.1
-          with:
-              webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
-              status: ${{ job.status }}
+      - name: Notify Slack
+        if: always()
+        uses: jcleal/job-to-slack@v0.0.1
+        with:
+            webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
+            status: ${{ job.status }}
