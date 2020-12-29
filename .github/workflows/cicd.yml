@@ -30,3 +30,10 @@ jobs:
 
       - name: Sync to S3
         run: ./bin/30-sync.sh
+
+      - name: Notify Slack
+        if: always()
+        uses: jmpa-oss/job-to-slack@v0.0.1
+        with:
+            webhook: ${{ secrets.SLACK_GITHUB_WEBHOOK_URL }}
+            status: ${{ job.status }}
