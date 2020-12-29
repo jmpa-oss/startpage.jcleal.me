@@ -29,7 +29,7 @@ jobs:
 
       - name: Notify Slack
         if: always()
-        uses: jcleal/job-to-slack@v0.0.1
+        uses: jmpa-oss/job-to-slack@v0.0.1
         with:
             webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
             status: ${{ job.status }}

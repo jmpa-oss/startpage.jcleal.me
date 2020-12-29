@@ -27,3 +27,10 @@ jobs:
 
       - name: Trigger update for repositories using this template
         run: ./bin/update-templates.sh
+
+      - name: Notify Slack
+        if: always()
+        uses: jmpa-oss/job-to-slack@v0.0.1
+        with:
+            webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
+            status: ${{ job.status }}

@@ -33,3 +33,10 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git commit -am "[skip ci] template cleanup"
           git push
+
+      - name: Notify Slack
+        if: always()
+        uses: jmpa-oss/job-to-slack@v0.0.1
+        with:
+            webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
+            status: ${{ job.status }}
