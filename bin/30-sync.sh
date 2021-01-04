@@ -35,6 +35,6 @@ bucket=$(aws cloudformation describe-stacks --stack-name "$stack" \
 
 # sync to s3
 echo "##[group]Syncing to s3"
-aws s3 sync "$path" "s3://$bucket" \
+aws s3 sync --delete --exact-timestamps "$path" "s3://$bucket" \
   || die "failed to sync $path to $bucket"
 echo "##[endgroup]"
