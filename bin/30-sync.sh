@@ -4,6 +4,10 @@
 # funcs
 die() { echo "$1" >&2; exit "${2:-1}"; }
 
+# check project root
+[[ ! -d .git ]] \
+  && die "must be run from repository root directory"
+
 # check deps
 deps=(aws)
 for dep in "${deps[@]}"; do
@@ -30,7 +34,7 @@ stack="${stack//\./-}"
 
 # get bucket
 bucket=$(aws cloudformation describe-stacks --stack-name "$stack" \
-  --query 'Stacks[].Outputs[?OutputKey==`Bucket`].OutputValue' --output text) \
+  --query "Stacks[].Outputs[?OutputKey=='Bucket'].OutputValue" --output text) \
   || die "failed to get bucket name for $stack"
 
 # sync to s3

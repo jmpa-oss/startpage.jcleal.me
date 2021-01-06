@@ -23,7 +23,7 @@ jobs:
           aws-region: ap-southeast-2
 
       - name: Lint
-        run: ./bin/10-lint.sh
+        uses: jmpa-oss/linter@v0.0.1
 
       - name: Trigger update for repositories using this template
         run: ./bin/update-templates.sh
