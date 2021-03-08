@@ -11,8 +11,9 @@
     --blue: #4dbed0;
     --purple: #d583d0;
     --white: #fff;
-    --branch: 1px solid #a7a9be;
     --pink: #ff1e9c;
+    --black: #090A0F;
+    --branch: 1px solid #a7a9be;
 }
 
 html {
@@ -109,7 +110,7 @@ a {
 }
 
 a:hover {
-    color: var(--background);
+    color: var(--black);
     background: var(--white);
 }
 
